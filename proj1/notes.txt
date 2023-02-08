@@ -8,7 +8,14 @@ access folder of *.g4
     run: export CLASSPATH=".:/Users/nghianguyen/myhouse/softs/antlr-4.9.2-complete.jar:$CLASSPATH"
 
 alias antlr4='java -Xmx500M -cp "/Users/nghianguyen/myhouse/softs/antlr-4.9.2-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
-alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.11.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+alias grun='java -Xmx500M -cp "/Users/nghianguyen/myhouse/softs/antlr-4.9.2-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+
+============================= //Test aaa/Hello.g4 ============================================
+https://github.com/antlr/antlr4/blob/master/doc/getting-started.md#a-first-example
+antlr4 Hello.g4
+javac Hello*.java
+grun Hello r -tree
+
 ============================= // ============================================
 
 Type: python3 run.py gen
@@ -18,7 +25,9 @@ Then type: python3 run.py test ASTGenSuite
 Then type: python3 run.py test CheckerSuite
 Then type: python3 run.py test CodeGenSuite
 
+============================= // Lexer rule ============================================
+https://github.com/antlr/antlr4/blob/master/doc/lexer-rules.md
+https://riptutorial.com/antlr/example/11232/simple-rules
+
 ============================= // ============================================
-
-
 
