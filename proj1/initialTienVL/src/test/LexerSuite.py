@@ -21,11 +21,15 @@ class LexerSuite(unittest.TestCase):
     #     self.assertTrue(TestLexer.test("123a123","123,a,123,<EOF>",104))
 
     # Lexer - question 2
-    def test_lower_upper_id(self):
-        self.assertTrue(TestLexer.test("1.0", "1.0,<EOF>", 103))
-    def test_lower_upper_id(self):
-        self.assertTrue(TestLexer.test("1.0e-12", "1.0e-12,<EOF>", 104))
+    # def test_lower_upper_id(self):
+    #     self.assertTrue(TestLexer.test("1.0", "1.0,<EOF>", 103))
+    # def test_lower_upper_id(self):
+    #     self.assertTrue(TestLexer.test("1.0e-12", "1.0e-12,<EOF>", 104))
+    #
+    # # Lexer - question 3
+    # def test_lower_upper_id(self):
+    #     self.assertTrue(TestLexer.test("'Yanxi Palace - 2018'", "'Yanxi Palace - 2018',<EOF>", 105))
 
-    # Lexer - question 3
+    # Parser - question 5
     def test_lower_upper_id(self):
-        self.assertTrue(TestLexer.test("'Yanxi Palace - 2018'", "'Yanxi Palace - 2018',<EOF>", 105))
+        self.assertTrue(TestLexer.test("abc = 1 + 2 ?? 3;", "abc = 1 + 2 ?? 3;,<EOF>", 101))

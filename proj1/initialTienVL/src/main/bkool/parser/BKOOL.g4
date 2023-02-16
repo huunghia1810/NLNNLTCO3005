@@ -8,32 +8,53 @@ options{
 	language=Python3;
 }
 
-program  : mptype 'main' LB RB LP body? RP EOF ;
+program  : (vardecl)+ EOF ;
 
-mptype: INTTYPE | VOIDTYPE ;
+vardecl: VARNAME EQ expr SEMI;
 
-body: funcall SEMI;
+expr: expr1 DQUES expr1 | expr1;
+expr1: expr2 (ADD | SUB) expr1 | expr2;
+expr2: expr2 (MUL | DIV | MOD) expr3 | expr3;
+expr3: expr3 DOT expr4 | expr4;
+expr4: expr5 DSTAR expr4 | expr5;
+expr5: VARNAME | INTLIT | FLOATLIT | STRINGLIT | arrdecl | subexpr;
 
-exp: funcall | INTLIT ;
+subexpr: LB expr RB;
 
-funcall: ID LB exp? RB ;
+arrdecl: (idxarr | assarr)+;
 
-INTTYPE: 'int' ;
+idxarr: 'array' LB exprlist RB;
+exprlist: (expr(COMMA exprlist)*)? ;
 
-VOIDTYPE: 'void'  ;
+assarr: 'array' LB asspairdecl RB;
+asspairdecl: (asspair(COMMA asspairdecl)*)? ;
+asspair: PAIRNAME ARROW expr;
 
-//Lexer - question 1
-//ID: [a-z] [a-z0-9]*;
 
-//Lexer - question 2
-//ID: [0-9]+ ('.' [0-9]+ EXPONENT? | EXPONENT);
-//fragment EXPONENT: [Ee] [+-]? [0-9]+ ;
+DSTAR: '**';
+DOT: '.';
+ADD: '+';
+SUB: '-';
+MUL: '*';
+DIV: '/';
+MOD: '%';
+DQUES: '??';
+ARROW: '=>';
+COMMA: ',';
+LB: '(';
+RB: ')';
+SEMI: ';';
+EQ: '=';
+INTLIT: [0-9]+;
+STRINGLIT: [a-zA-Z]+;
+FLOATLIT: [0-9]+ '.' [0-9]+;
+ID: [a-zA-Z]+;
+VARNAME: [a-z]+;
+PAIRNAME: [a-zA-Z0-9]+;
 
-//Lexer - question 3
-ID: '\'' ( ~('\'') | '\'' (~('\''))* '\'' )* '\'';
-
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+WS: [ \t\r\n] -> skip;
 
 ERROR_CHAR: . {raise ErrorToken(self.text)};
+
 UNCLOSE_STRING: .;
 ILLEGAL_ESCAPE: .;

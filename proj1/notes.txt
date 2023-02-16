@@ -31,3 +31,12 @@ https://riptutorial.com/antlr/example/11232/simple-rules
 
 ============================= // ============================================
 
+ADDOP + -
+RELOP >
+EXPONENT ^
+ASSIGN =
+
+ADDOP = RELOP > EXPONENT > ASSIGN
+
+
+

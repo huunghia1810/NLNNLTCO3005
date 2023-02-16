@@ -1,0 +1,70 @@
+grammar BKOOL;
+
+@lexer::header {
+from lexererr import *
+}
+
+options{
+	language=Python3;
+}
+
+program  : (vardecl | funcdecl)+ EOF ;
+vardecl: 'vardecl';
+funcdecl: 'funcdecl';
+funcdecl: tp ID paramdef body;
+
+paramdef: LB paramlist RB;
+paramlist: parampatch | ;
+parampatch: param COMMA parampatch | param;
+param: tp idlist;
+
+body: LCB stmtlist RCB;
+stmtlist: stmt stmtlist | ;
+stmt: vardecl | assignstmt | callstmt | returnstmt;
+
+vardecl: tp idlist COMMA; //int id, listitem, ...;
+assignstmt: ID EQ exp COMMA; //id = exp;
+callstmt: ID LB explist RB COMMA; //functionName(exp, ddsf);
+returnstmt: 'return' exp COMMA;
+
+paramdecl: ID SEMI paramdecl | ;
+//paramdecl: (ID(COMMA ID)*)?; //EBNF
+
+exp: exp1 ADD exp | exp1;
+exp1: exp2 SUB exp2 | exp2;
+exp2: exp2 (MUL | DIV) exp3 | exp3;
+exp3: INTLIT | FLOATLIT | ID | callexp | subexp ;
+callexp: ID LB explist RB;
+subexp: LB exp RB;
+
+
+explist: (exp(SEMI explist)*)? ;
+//explist: exp SEMI explist | ; -> sai
+
+tp: INT | FLOAT;
+idlist: ID SEMI idlist | ID;
+//idlist: ID(',' ID)*; //EBNF
+
+ADD: '+';
+SUB: '-';
+MUL: '*';
+DIV: '/';
+COMMA: ';';
+LB: '(';
+RB: ')';
+LCB: '{';
+RCB: '}';
+INT: 'int';
+FLOAT: 'float';
+SEMI: ',';
+EQ: '=';
+ID: [a-zA-Z]+;
+INTLIT: [0-9]+;
+FLOATLIT: [0-9]+ '.' [0-9]+;
+
+WS: [ \t\r\n] -> skip;
+
+ERROR_CHAR: . {raise ErrorToken(self.text)};
+
+UNCLOSE_STRING: .;
+ILLEGAL_ESCAPE: .;
