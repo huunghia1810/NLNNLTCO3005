@@ -5,6 +5,22 @@ grammar MT22;
 from lexererr import *
 }
 
+@lexer::members {
+def emit(self):
+    tk = self.type
+    if tk == self.UNCLOSE_STRING:
+        result = super().emit();
+        raise UncloseString(result.text)
+    elif tk == self.ILLEGAL_ESCAPE:
+        result = super().emit();
+        raise IllegalEscape(result.text);
+    elif tk == self.ERROR_CHAR:
+        result = super().emit();
+        raise ErrorToken(result.text);
+    else:
+        return super().emit();
+}
+
 options{
 	language=Python3;
 }
@@ -165,9 +181,21 @@ STRINGLIT: '"' ( ~('\\') | '\\' (~('\\'))* '\\' )* '"'
 //fragment Schar: ~ [\\\r\n] | EscapeSequence;
 //fragment EscapeSequence : '\\b' | '\\f' | '\\r' | '\\n' | '\\t' | '\\\'' | '\\\\' | '\\"' ;
 
-ID: [a-zA-Z]+;
+ID: [a-zA-Z0-9_]+;
 
+//-----------------------
+LINE_CMT
+    : '//' ~[\r\n]*
+    -> skip
+    ;
+BLOCK_CMT
+    : '/*' .*? '*/'
+    -> skip
+    ;
 //COMMENT : '#' ~[\r\n]* '\r'? '\n' -> skip ;
+COMMENT
+ : '#' ~[\r\n\f]*
+ ;
 WS : [ \t\r\n\f]+ -> skip ; // skip spaces, tabs, newlines
 
 ERROR_CHAR: . {raise ErrorToken(self.text)};

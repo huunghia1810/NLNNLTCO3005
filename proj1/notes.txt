@@ -38,5 +38,7 @@ ASSIGN =
 
 ADDOP = RELOP > EXPONENT > ASSIGN
 
+https://github.com/tanMinhTr782/cse-ppl/blob/master/assignment/ass1/initial/src/main/mc/parser/MC.g4
+https://stackoverflow.com/questions/15610183/if-else-statements-in-antlr-using-listeners
 
 
