@@ -1,1 +1,1 @@
-1val,<EOF>
+1,val,<EOF>

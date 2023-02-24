@@ -15,24 +15,24 @@ class ParserSuite(unittest.TestCase):
         # expect = "successful"
 
         # input = """main: function void () {}"""
-        # input = """x: integer = 65;
-        # fact: function integer (n: integer) {
-        #     if (n == 0) return 1;
-        #     else return n * fact(n - 1);
-        # }
-        # inc: function void(out n: integer, delta: integer) {
-        #     n = n + delta;
-        # }
-        # main: function void() {
-        #     delta: integer = fact(3);
-        #     inc(x, delta);
-        #     printInteger(x);
-        # }"""
+        input = """x: integer = 65;
+        fact: function integer (n: integer) {
+            if (n == 0) return 1;
+            else return n * fact(n - 1);
+        }
+        inc: function void(out n: integer, delta: integer) {
+            n = n + delta;
+        }
+        main: function void() {
+            delta: integer = fact(3);
+            inc(x, delta);
+            printInteger(x);
+        }"""
 
-        #input = """a, b, c: integer = 4, 6;"""
+#         input = """a, b, c: integer = 4, 6;"""
 #         input = """/* A C-style comment */
 # a: integer =5; // A C++ style comment"""
-
+#
 #         input = """{
 # r, s: int;
 # r = 2.0;
@@ -44,13 +44,6 @@ class ParserSuite(unittest.TestCase):
 #         foo(2 + x, 4.0 / y);
 #         goo();
 #         }"""
-        input = """fact: function integer (n: integer) {
-        r, s: integer;
-r = 2.0;
-a, b: array [5] of integer;
-s = r * r * myPI;
-a[0] = s;
-        }"""
 
         #expect = "Error on line 1 col 29: ;"
         expect = "successful"

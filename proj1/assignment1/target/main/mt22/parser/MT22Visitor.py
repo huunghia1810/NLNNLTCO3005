@@ -14,63 +14,18 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#decl_list.
-    def visitDecl_list(self, ctx:MT22Parser.Decl_listContext):
+    # Visit a parse tree produced by MT22Parser#func_main.
+    def visitFunc_main(self, ctx:MT22Parser.Func_mainContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#decl.
-    def visitDecl(self, ctx:MT22Parser.DeclContext):
+    # Visit a parse tree produced by MT22Parser#main_return.
+    def visitMain_return(self, ctx:MT22Parser.Main_returnContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#var_decl.
-    def visitVar_decl(self, ctx:MT22Parser.Var_declContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#idlist.
-    def visitIdlist(self, ctx:MT22Parser.IdlistContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#varssign.
-    def visitVarssign(self, ctx:MT22Parser.VarssignContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#fun_decl.
-    def visitFun_decl(self, ctx:MT22Parser.Fun_declContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param_decl.
-    def visitParam_decl(self, ctx:MT22Parser.Param_declContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#paramlist.
-    def visitParamlist(self, ctx:MT22Parser.ParamlistContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param_prime.
-    def visitParam_prime(self, ctx:MT22Parser.Param_primeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param.
-    def visitParam(self, ctx:MT22Parser.ParamContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param_preffix.
-    def visitParam_preffix(self, ctx:MT22Parser.Param_preffixContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#block_stmt.
-    def visitBlock_stmt(self, ctx:MT22Parser.Block_stmtContext):
+    # Visit a parse tree produced by MT22Parser#arrayL.
+    def visitArrayL(self, ctx:MT22Parser.ArrayLContext):
         return self.visitChildren(ctx)
 
 
@@ -79,18 +34,33 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MT22Parser#assign_stmt.
+    def visitAssign_stmt(self, ctx:MT22Parser.Assign_stmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#lhs.
+    def visitLhs(self, ctx:MT22Parser.LhsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MT22Parser#if_stmt.
     def visitIf_stmt(self, ctx:MT22Parser.If_stmtContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#do_while_stmt.
-    def visitDo_while_stmt(self, ctx:MT22Parser.Do_while_stmtContext):
+    # Visit a parse tree produced by MT22Parser#for_stmt.
+    def visitFor_stmt(self, ctx:MT22Parser.For_stmtContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#for_stmt.
-    def visitFor_stmt(self, ctx:MT22Parser.For_stmtContext):
+    # Visit a parse tree produced by MT22Parser#while_stmt.
+    def visitWhile_stmt(self, ctx:MT22Parser.While_stmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#do_while_stmt.
+    def visitDo_while_stmt(self, ctx:MT22Parser.Do_while_stmtContext):
         return self.visitChildren(ctx)
 
 
@@ -104,143 +74,163 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#call_stmt.
-    def visitCall_stmt(self, ctx:MT22Parser.Call_stmtContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param_call_stmt.
-    def visitParam_call_stmt(self, ctx:MT22Parser.Param_call_stmtContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param_call_list.
-    def visitParam_call_list(self, ctx:MT22Parser.Param_call_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param_call_prime.
-    def visitParam_call_prime(self, ctx:MT22Parser.Param_call_primeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#param_call.
-    def visitParam_call(self, ctx:MT22Parser.Param_callContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by MT22Parser#return_stmt.
     def visitReturn_stmt(self, ctx:MT22Parser.Return_stmtContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp.
-    def visitExp(self, ctx:MT22Parser.ExpContext):
+    # Visit a parse tree produced by MT22Parser#call_stmt.
+    def visitCall_stmt(self, ctx:MT22Parser.Call_stmtContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp1.
-    def visitExp1(self, ctx:MT22Parser.Exp1Context):
+    # Visit a parse tree produced by MT22Parser#block_stmt.
+    def visitBlock_stmt(self, ctx:MT22Parser.Block_stmtContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp2.
-    def visitExp2(self, ctx:MT22Parser.Exp2Context):
+    # Visit a parse tree produced by MT22Parser#variable_decl.
+    def visitVariable_decl(self, ctx:MT22Parser.Variable_declContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp3.
-    def visitExp3(self, ctx:MT22Parser.Exp3Context):
+    # Visit a parse tree produced by MT22Parser#identifier_list.
+    def visitIdentifier_list(self, ctx:MT22Parser.Identifier_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp4.
-    def visitExp4(self, ctx:MT22Parser.Exp4Context):
+    # Visit a parse tree produced by MT22Parser#valid_type.
+    def visitValid_type(self, ctx:MT22Parser.Valid_typeContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp5.
-    def visitExp5(self, ctx:MT22Parser.Exp5Context):
+    # Visit a parse tree produced by MT22Parser#para_list_decl.
+    def visitPara_list_decl(self, ctx:MT22Parser.Para_list_declContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp6.
-    def visitExp6(self, ctx:MT22Parser.Exp6Context):
+    # Visit a parse tree produced by MT22Parser#para_decl.
+    def visitPara_decl(self, ctx:MT22Parser.Para_declContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp7.
-    def visitExp7(self, ctx:MT22Parser.Exp7Context):
+    # Visit a parse tree produced by MT22Parser#func_decl.
+    def visitFunc_decl(self, ctx:MT22Parser.Func_declContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp8.
-    def visitExp8(self, ctx:MT22Parser.Exp8Context):
+    # Visit a parse tree produced by MT22Parser#func_prototype.
+    def visitFunc_prototype(self, ctx:MT22Parser.Func_prototypeContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#exp9.
-    def visitExp9(self, ctx:MT22Parser.Exp9Context):
+    # Visit a parse tree produced by MT22Parser#func_return_type.
+    def visitFunc_return_type(self, ctx:MT22Parser.Func_return_typeContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#operand.
-    def visitOperand(self, ctx:MT22Parser.OperandContext):
+    # Visit a parse tree produced by MT22Parser#func_body.
+    def visitFunc_body(self, ctx:MT22Parser.Func_bodyContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#call.
-    def visitCall(self, ctx:MT22Parser.CallContext):
+    # Visit a parse tree produced by MT22Parser#func_call.
+    def visitFunc_call(self, ctx:MT22Parser.Func_callContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#valintlist.
-    def visitValintlist(self, ctx:MT22Parser.ValintlistContext):
+    # Visit a parse tree produced by MT22Parser#arg_list.
+    def visitArg_list(self, ctx:MT22Parser.Arg_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#valfloatlist.
-    def visitValfloatlist(self, ctx:MT22Parser.ValfloatlistContext):
+    # Visit a parse tree produced by MT22Parser#expression.
+    def visitExpression(self, ctx:MT22Parser.ExpressionContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#valstringlist.
-    def visitValstringlist(self, ctx:MT22Parser.ValstringlistContext):
+    # Visit a parse tree produced by MT22Parser#relation_expr.
+    def visitRelation_expr(self, ctx:MT22Parser.Relation_exprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#valbooleanlist.
-    def visitValbooleanlist(self, ctx:MT22Parser.ValbooleanlistContext):
+    # Visit a parse tree produced by MT22Parser#relation_op.
+    def visitRelation_op(self, ctx:MT22Parser.Relation_opContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#typ.
-    def visitTyp(self, ctx:MT22Parser.TypContext):
+    # Visit a parse tree produced by MT22Parser#logical_expr.
+    def visitLogical_expr(self, ctx:MT22Parser.Logical_exprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#typeint.
-    def visitTypeint(self, ctx:MT22Parser.TypeintContext):
+    # Visit a parse tree produced by MT22Parser#logical_op.
+    def visitLogical_op(self, ctx:MT22Parser.Logical_opContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#typefloat.
-    def visitTypefloat(self, ctx:MT22Parser.TypefloatContext):
+    # Visit a parse tree produced by MT22Parser#adding_expr.
+    def visitAdding_expr(self, ctx:MT22Parser.Adding_exprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#typestring.
-    def visitTypestring(self, ctx:MT22Parser.TypestringContext):
+    # Visit a parse tree produced by MT22Parser#adding_op.
+    def visitAdding_op(self, ctx:MT22Parser.Adding_opContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#typeboolean.
-    def visitTypeboolean(self, ctx:MT22Parser.TypebooleanContext):
+    # Visit a parse tree produced by MT22Parser#multiplying_expr.
+    def visitMultiplying_expr(self, ctx:MT22Parser.Multiplying_exprContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#fntype.
-    def visitFntype(self, ctx:MT22Parser.FntypeContext):
+    # Visit a parse tree produced by MT22Parser#multiplying_op.
+    def visitMultiplying_op(self, ctx:MT22Parser.Multiplying_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#unary_logical_expr.
+    def visitUnary_logical_expr(self, ctx:MT22Parser.Unary_logical_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#unary_logical_op.
+    def visitUnary_logical_op(self, ctx:MT22Parser.Unary_logical_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#sign_expr.
+    def visitSign_expr(self, ctx:MT22Parser.Sign_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#sign_op.
+    def visitSign_op(self, ctx:MT22Parser.Sign_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#index_expr.
+    def visitIndex_expr(self, ctx:MT22Parser.Index_exprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#expr_list.
+    def visitExpr_list(self, ctx:MT22Parser.Expr_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#array_decl.
+    def visitArray_decl(self, ctx:MT22Parser.Array_declContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#integer_list.
+    def visitInteger_list(self, ctx:MT22Parser.Integer_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#atomic_type.
+    def visitAtomic_type(self, ctx:MT22Parser.Atomic_typeContext):
         return self.visitChildren(ctx)
 
 

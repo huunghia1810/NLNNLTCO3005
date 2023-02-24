@@ -19,8 +19,8 @@ grun Hello r -tree
 ============================= // ============================================
 
 Type: python3 run.py gen
-Then type: python3 run.py test LexerSuite
-Then type: python3 run.py test ParserSuite
+Then type: python3 run.py gen && python3 run.py test LexerSuite
+Then type: python3 run.py gen && python3 run.py test ParserSuite
 Then type: python3 run.py test ASTGenSuite
 Then type: python3 run.py test CheckerSuite
 Then type: python3 run.py test CodeGenSuite
