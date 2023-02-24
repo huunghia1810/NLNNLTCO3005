@@ -9,25 +9,18 @@ options{
 	language=Python3;
 }
 
-program: (variable_decl| func_decl | func_main)* EOF ;
+program: (variable_decl | func_decl | func_main)* EOF ;
 
-//// --------------- Parser ----------------------------------------- ////
-
-// func_main
+// ------------------ func_main ------------------
 func_main
-    :   MAIN COLON FUNCTION VoidType LPAREN RPAREN main_return
+    :   MAIN COLON FUNCTION VoidType LP RP main_return
     ;
 
 main_return
-    :   LBRACKET (stmt|variable_decl)* RBRACKET
+    :   LCB (stmt|variable_decl)* RCB
     ;
 
-// 3.5 - arrayL
-arrayL
-    :   LBRACKET expr_list RBRACKET
-    ;
-
-// 7 - statement: stmt
+// ------------------ 7 - statement: stmt
 stmt
     :   assign_stmt
     |   if_stmt
@@ -41,72 +34,72 @@ stmt
     |   block_stmt
     ;
 
-// 7.1 - assign_stmt
+// ------------------ 7.1 - assign_stmt
 assign_stmt
-    :   lhs ASIGN expression SEMICOLON
+    :   lhs ASSIGN expression SM
     ;
 
 lhs
-    :   Identifier
+    :   ID
     |   index_expr
     ;
 
-// 7.2 - if_stmt
+// ------------------ 7.2 if_stmt ------------------
 if_stmt
-    :   IF LPAREN expression RPAREN stmt (ELSE stmt)?
+    :   IF LP expression RP stmt (ELSE stmt)?
     ;
 
-// 7.3 - for_stmt
+// ------------------ 7.3 for_stmt ------------------
 for_stmt
-    :   FOR LPAREN Identifier ASIGN expression COMMA expression COMMA expression RPAREN stmt
+    :   FOR LP ID ASSIGN expression CM expression CM expression RP stmt
     ;
 
-// 7.4 - while_stmt
+// ------------------ 7.4 while_stmt ------------------
 while_stmt
-    :   WHILE LPAREN expression RPAREN stmt
+    :   WHILE LP expression RP stmt
     ;
 
-// 7.5 - do_while_stmt
+// ------------------ 7.5 do_while_stmt ------------------
 do_while_stmt
-    :   DO block_stmt WHILE LPAREN expression RPAREN SEMICOLON
+    :   DO block_stmt WHILE LP expression RP SM
     ;
 
-// 7.6 - break_stmt
+// ------------------ 7.6 break_stmt
 break_stmt
-    :   BREAK SEMICOLON
+    :   BREAK SM
     ;
 
-// 7.7 - continue_stmt
+// ------------------ 7.7 continue_stmt
 continue_stmt
-    :   CONTINUE SEMICOLON
+    :   CONTINUE SM
     ;
 
-// 7.8 - return_stmt
+// ------------------ 7.8 return_stmt ------------------
 return_stmt
-    :   RETURN expression? SEMICOLON
+    :   RETURN expression? SM
     ;
 
-// 7.9 - call_stmt
+// ------------------ 7.9 call_stmt ------------------
 call_stmt
-    :   func_call SEMICOLON
+    :   func_call SM
     ;
 
-// 7.10 - block_stmt
+// ------------------ 7.10 block_stmt ------------------
 block_stmt
-    :   LBRACKET (stmt | variable_decl)* RBRACKET
+    :   LCB (stmt | variable_decl)* RCB
     ;
 
-// 5.1 - variable_decl
+// ------------------ 5.1 variable_decl ------------------
 variable_decl
-    :   l=identifier_list COLON valid_type ASIGN r=expr_list e=SEMICOLON
+    :   l = identifier_lst COLON valid_type ASSIGN r=expr_lst e=SM
     {if len($l.text.split(',')) != len($r.text.split(',')):
         raise Exception('Error on line {} col {}: ;'.format($e.line, $e.pos))
     }
-    |   identifier_list COLON atomic_type SEMICOLON
+    |   identifier_lst COLON atomic_type SM
     ;
 
-identifier_list
-    :   Identifier (COMMA Identifier)*
+identifier_lst
+    :   ID (CM ID)*
     ;
 
 valid_type
@@ -114,22 +107,22 @@ valid_type
     |   AutoType
     ;
 
-// 5.2 para_decl
-para_list_decl
-    :   para_decl (COMMA para_decl)*
+// ------------------ 5.2 para_decl ------------------
+para_lst_decl
+    :   para_decl (CM para_decl)*
     ;
 
 para_decl
-    :   INHERIT? OUT? Identifier COLON atomic_type
+    :   INHERIT? OUT? ID COLON atomic_type
     ;
 
-// 5.3 func_decl
+// ------------------ 5.3 func_decl ------------------
 func_decl
     :   func_prototype func_body
     ;
 
 func_prototype
-    :   Identifier COLON FUNCTION func_return_type LPAREN para_list_decl RPAREN (INHERIT Identifier)?
+    :   ID COLON FUNCTION func_return_type LP para_lst_decl RP (INHERIT ID)?
     ;
 
 func_return_type
@@ -139,21 +132,21 @@ func_return_type
     ;
 
 func_body
-    :   LBRACKET (stmt|variable_decl)* RBRACKET
+    :   LCB (stmt|variable_decl)* RCB
     ;
 
-// 6 - expression
-// 6.6 - func_call
+// ------------------ 6 - expression
+// ------------------ 6.6 - func_call
 func_call
-    :   Identifier LPAREN arg_list* RPAREN
+    :   ID LP arg_lst* RP
     ;
 
-arg_list
-    :   expression (COMMA expression)*
+arg_lst
+    :   expression (CM expression)*
     ;
 
 expression
-    :   relation_expr (DOUBLECOLON relation_expr)?
+    :   relation_expr (SRO relation_expr)?
     ;
 
 relation_expr
@@ -161,7 +154,7 @@ relation_expr
     ;
 
 relation_op
-    :   (EQEQ | NOTEQ | LESS | CREATER | LESSEQ | CREATEREQ)
+    :   (EQ | INEQ | LT | GT | LE | GE)
     ;
 
 logical_expr
@@ -179,7 +172,7 @@ adding_expr
     ;
 
 adding_op
-    :   (PLUS | MINUS)
+    :   (ADD | SUB)
     ;
 
 multiplying_expr
@@ -188,7 +181,7 @@ multiplying_expr
     ;
 
 multiplying_op
-    :   (STAR | DIV | MOD)
+    :   (MUL | DIV | MOD)
     ;
 
 unary_logical_expr
@@ -206,33 +199,31 @@ sign_expr
     ;
 
 sign_op
-    :   (MINUS)
+    :   (SUB)
     ;
 
 index_expr
-    :   Identifier LSQUARE expr_list RSQUARE
-    |   Identifier
-    |   BooleanL
-    |   IntegerL
-    |   FloatL
-    |   StringL
-    |   arrayL  //?
+    :   ID LSB expr_lst RSB
+    |   ID
+    |   BOOLLIT
+    |   INTLIT
+    |   FLOATLIT
+    |   STRINGLIT
+    |   arrayL //processing
     |   func_call
     //
     ;
 
-expr_list
-    :   expression (COMMA expression)*
+arrayL: LCB expr_lst RCB;
+
+expr_lst
+    :   expression (CM expression)*
     ;
 
-// 4.2 - array_decl
-array_decl
-    :   ArrayType LSQUARE integer_list RSQUARE OF atomic_type
-    ;
+// ------------------ 4.2 array_decl ------------------
+array_decl:   ArrayType LSB integer_lst RSB OF atomic_type;
 
-integer_list
-    :   IntegerL (COMMA IntegerL)*
-    ;
+integer_lst: INTLIT (CM INTLIT)*;
 
 atomic_type
     :   BooleanType
@@ -241,92 +232,40 @@ atomic_type
     |   StringType
     ;
 
-//// --------------- Lexer ------------------------------------------ ////
+// ------------------ 4. Type: String | Integer | Float | Boolean | Array | Void | Auto ------------------
+StringType: STRING;
+IntegerType: INTEGER;
+FloatType: FLOAT;
+BooleanType: BOOLEAN;
+ArrayType: ARRAY;
+VoidType: VOID;
+AutoType: AUTO;
 
-
-// 4.1 - Atomic types : BooleanType | IntegerType | FloatType | StringType
-// - BooleanType
-BooleanType
-    :   BOOLEAN //{self.text += " BooleanType"}
-    ;
-
-//BooleanOpt
-//    :   (NOT | ANDAND | OROR | EQEQ | NOTEQ) //{self.text += " BooleanOpt"}
-//    ;
-
-// - IntegerType
-IntegerType
-    :  INTEGER //{self.text += " IntegerType"}
-    ;
-
-//IntegerOpt
-//    :   (PLUS | MINUS | STAR | DIV | MOD | EQEQ | NOTEQ | LESS | LESSEQ | CREATEREQ | CREATER) {self.text += " IntegerOpt"}
-//    ;
-
-// - FloatType
-FloatType
-    :   FLOAT //{self.text += " FloatType"}
-    ;
-
-// - StringType
-StringType
-    :   STRING //{self.text += " StringType"}
-    ;
-
-// 4.2 - Array Type
-ArrayType
-    :   ARRAY //{self.text += " ArrayType"}
-    ;
-
-// 4.3 - Void Type
-VoidType
-    :   VOID //{self.text += " VoidType"}
-    ;
-
-// 4.4 - Auto Type
-AutoType
-    :   AUTO //{self.text += " AutoType"}
-    ;
-
-// 3.7 - Literal: IntegerL | FloatL | BooleanL | StringL | arrayL
-// - IntegerL
-IntegerL
-    :   [1-9] ('_'[0-9] | [0-9])* {self.text = self.text.replace('_', '')}//{self.text += " IntegerL"}
+// ------------------ 3.7 Literals: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT ------------------
+INTLIT
+    :   NonZeroDigit ('_'Digit | Digit)* {self.text = self.text.replace('_', '')}
     |   '0'
     ;
 
-// - FloatL
-FloatL
-    :   IntegerL DecimalP ExponentP? {self.text = self.text.replace('_', '')}
-    |   IntegerL ExponentP
-    |   DecimalP ExponentP
+FLOATLIT
+    :   INTLIT DecimalPart ExponentPart? {self.text = self.text.replace('_', '')}
+    |   INTLIT ExponentPart
+    |   DecimalPart ExponentPart
     ;
+fragment        DecimalPart: '.' Digit* ;
+fragment        ExponentPart: [eE] ('-' | '+')? Digit+ ;
+fragment        Digit: [0-9];
+fragment        NonZeroDigit: [1-9];
 
-fragment
-DecimalP: '.' [0-9]* ;
+BOOLLIT : TRUE | FALSE;
 
-fragment
-ExponentP: [eE] [+-]? [0-9]+ ;
-
-
-// - BooleanL
-BooleanL
-    :   (TRUE | FALSE) //{self.text += " BooleanL"}
-    ;
-
-// - StringL
-StringL
-    :   '"' Schar* '"' {self.text = self.text[1:-1]}
-    ;
-
+STRINGLIT:  '"' Schar* '"' {self.text = self.text[1:-1]};
 fragment Schar:
 	~ ["\\]
 	| EscapeSequence
     ;
-
-fragment
-EscapeSequence
-    :   '\\b'
+fragment EscapeSequence:
+    '\\b'
     |   '\\f'
     |   '\\r'
     |   '\\n'
@@ -336,94 +275,85 @@ EscapeSequence
     |   '\\"'
     ;
 
-// 3.6 - Seperator
-LPAREN:     '(' ;
-RPAREN:     ')' ;
-LSQUARE:    '[' ;
-RSQUARE:    ']' ;
-DOT:        '.' ;
-COMMA:      ',' ;
-SEMICOLON:  ';' ;
-COLON:      ':' ;
-LBRACKET:   '{' ;
-RBRACKET:   '}' ;
-ASIGN:      '=' ;
+// ------------------ 3.6 Seperators ------------------
+LP:         '(';
+RP:         ')';
+LSB:        '[';
+RSB:        ']';
+DOT:        '.';
+CM:         ',';
+SM:         ';';
+COLON:      ':';
+LCB:        '{';
+RCB:        '}';
+ASSIGN:     '=';
 
-// 3.5 - Operator
-PLUS:       '+' ;
-MINUS:      '-' ;
-STAR:       '*' ;
-DIV:        '/' ;
-MOD:        '%' ;
-NOT:        '!' ;
-ANDAND:     '&&' ;
-OROR:       '||' ;
-EQEQ:       '==' ;
-NOTEQ:      '!=' ;
-LESS:       '<' ;
-LESSEQ:     '<=' ;
-CREATER:    '>' ;
-CREATEREQ:  '>=' ;
-DOUBLECOLON: '::' ;
+// ------------------ 3.5 Operators ------------------
+ADD:            '+';
+SUB:            '-';
+MUL:            '*';
+DIV:            '/';
+MOD:            '%';
+NOT:            '!';
+ANDAND:         '&&';
+OROR:           '||';
+EQ:             '==';
+INEQ:           '!='; //inequality
+LT:             '<';
+GT:             '>';
+LE:             '<=';
+GE:             '>=';
+SRO:            '::'; //scope resolution operator
 
-// 3.4 - Keyword
-AUTO:       'auto' ;
-BREAK:      'break' ;
-BOOLEAN:    'boolean' ;
-DO:         'do' ;
-ELSE:       'else' ;
-FALSE:      'false' ;
-FLOAT:      'float' ;
-FOR:        'for' ;
-FUNCTION:   'function' ;
-IF:         'if' ;
-INTEGER:    'integer' ;
-RETURN:     'return' ;
-STRING:     'string' ;
-TRUE:       'true' ;
-WHILE:      'while' ;
-VOID:       'void' ;
-OUT:        'out' ;
-CONTINUE:   'continue' ;
-OF:         'of' ;
-INHERIT:    'inherit' ;
-ARRAY:      'array' ;
-MAIN:       'main' ;
+// ------------------ 3.4 Keywords ------------------
+MAIN:           'main';
+AUTO:           'auto';
+BREAK:          'break';
+BOOLEAN:        'boolean';
+DO:             'do';
+ELSE:           'else';
+FALSE:          'false';
+FLOAT:          'float';
+FOR:            'for';
+FUNCTION:       'function';
+IF:             'if';
+INTEGER:        'integer';
+INT:            'int'; //
+RETURN:         'return';
+STRING:         'string';
+TRUE:           'true';
+WHILE:          'while';
+VOID:           'void';
+IN:             'in'; //?
+OUT:            'out';
+CONTINUE:       'continue';
+OF:             'of';
+INHERIT:        'inherit';
+ARRAY:          'array';
 
-// 3.3 - Identifier
-//IdentifierList
-//    :   Identifier (COMMA Identifier)* //{self.text += " IdenList"}
-//    ;
-
-Identifier
-    :   [a-zA-Z_] [a-zA-Z_0-9]* //{self.text += " Identifier"}
+// ------------------ 3.3 ID ------------------
+ID
+    :   [a-zA-Z_] [a-zA-Z_0-9]*
     ;
 
-// 3.1 - WhiteSpaces
-WhiteSpaces
-    :   [ \t\r\f\n]+
-        -> skip
-    ;
-
-// 3.2 - BlockComment, LineComment
+// ------------------ 3.2 Comment ------------------
 BlockComment
-    :   '/*' .*? '*/'
+    :   '/*' .*? '*/' //non-greedy
         -> skip
     ;
-
 LineComment
     :   '//' ~[\r\n]*
         -> skip
     ;
 
-//// --------------- Exception -------------------------------------- ////
+// ------------------ 3.1 ------------------
+WS: [ \t\r\f\n]+ -> skip;
+
 fragment
-UncloseString
+    UncloseString
     :   '"' Schar*
     ;
 
-
-
 UNCLOSE_STRING: UncloseString {raise UncloseString(self.text[1:])};
-ERROR_CHAR: . { raise ErrorToken(self.text) };
-//ILLEGAL_ESCAPE: . ;
+ERROR_CHAR: . {raise ErrorToken(self.text)};
+ILLEGAL_ESCAPE: . {raise IllegalEscape(self.text)};
