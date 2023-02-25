@@ -53,11 +53,12 @@ return_stmt: RETURN expr? SM;
 
 // ------------------ 5.1 var_decl ------------------
 var_decl
-    : t = id_lst COLON valid_type ASSIGN r=expr_lst e=SM
-    {if len($t.text.split(',')) != len($r.text.split(',')):
+    : l=id_lst COLON valid_type ASSIGN r=expr_lst e=SM
+    {if len($l.text.split(',')) != len($r.text.split(',')):
         raise Exception('Error on line {} col {}: ;'.format($e.line, $e.pos))
     }
     | id_lst COLON atomic_type SM
+    | id_lst COLON array_decl SM //?
     ;
 
 id_lst: ID (CM ID)*;
@@ -67,13 +68,14 @@ valid_type: atomic_type | AutoType;
 // ------------------ 5.2 para_decl ------------------
 para_lst_decl: para_decl (CM para_decl)*;
 
-para_decl: INHERIT? OUT? ID COLON atomic_type;
+para_decl: INHERIT? OUT?
+    (ID COLON atomic_type | ID COLON array_decl); //?
 
 // ------------------ 5.3 func_decl ------------------
-func_decl:   func_prototype func_body;
+func_decl: func_prototype func_body;
 
 func_prototype
-    :   ID COLON FUNCTION func_return_type LP para_lst_decl RP (INHERIT ID)?
+    :   ID COLON FUNCTION func_return_type LP para_lst_decl* RP (INHERIT ID)? //? para_lst_decl*
     ;
 
 func_return_type
@@ -143,7 +145,7 @@ index_expr
 expr_lst: expr (CM expr)*;
 
 // ------------------ 4.2 array_decl ------------------
-array_decl:   ArrayType LSB integer_lst RSB OF atomic_type;
+array_decl: ArrayType LSB integer_lst RSB OF atomic_type;
 
 integer_lst: INTLIT (CM INTLIT)*;
 
@@ -248,7 +250,7 @@ STRING:         'string';
 TRUE:           'true';
 WHILE:          'while';
 VOID:           'void';
-IN:             'in'; //?
+IN:             'in';
 OUT:            'out';
 CONTINUE:       'continue';
 OF:             'of';
@@ -265,6 +267,7 @@ BlockComment
     :   '/*' .*? '*/' //non-greedy
         -> skip
     ;
+//BlockMissComment: '/*' ~['*/'] {raise UnterminatedComment(self.text)};
 LineComment
     :   '//' ~[\r\n]*
         -> skip
@@ -277,7 +280,12 @@ fragment
     UncloseString
     :   '"' Schar*
     ;
+fragment
+    UnterminatedCommentString
+    :   '/*' Schar*
+    ;
 
 UNCLOSE_STRING: UncloseString {raise UncloseString(self.text[1:])};
 ERROR_CHAR: . {raise ErrorToken(self.text)};
 ILLEGAL_ESCAPE: . {raise IllegalEscape(self.text)};
+UNTERMINATED_COMMENT: UnterminatedCommentString {raise UnterminatedComment(self.text)};
