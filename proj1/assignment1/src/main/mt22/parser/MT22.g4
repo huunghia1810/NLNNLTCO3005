@@ -9,117 +9,68 @@ options{
 	language=Python3;
 }
 
-program: (variable_decl | func_decl | func_main)* EOF ;
+program: (var_decl | func_decl | func_main)* EOF;
 
 // ------------------ func_main ------------------
-func_main
-    :   MAIN COLON FUNCTION VoidType LP RP main_return
-    ;
+func_main: MAIN COLON FUNCTION VoidType LP RP main_return;
 
-main_return
-    :   LCB (stmt|variable_decl)* RCB
-    ;
+main_return: LCB (stmt|var_decl)* RCB;
 
-// ------------------ 7 - statement: stmt
+// ------------------ 7 statement: stmt ------------------
 stmt
     :   assign_stmt
     |   if_stmt
-    |   for_stmt
     |   while_stmt
     |   do_while_stmt
+    |   for_stmt
     |   break_stmt
     |   continue_stmt
-    |   return_stmt
     |   call_stmt
     |   block_stmt
+    |   return_stmt
     ;
 
-// ------------------ 7.1 - assign_stmt
-assign_stmt
-    :   lhs ASSIGN expression SM
-    ;
+assign_stmt: lhs ASSIGN expr SM;
+lhs: ID | index_expr;
 
-lhs
-    :   ID
-    |   index_expr
-    ;
+if_stmt: IF LP expr RP stmt (ELSE stmt)?;
 
-// ------------------ 7.2 if_stmt ------------------
-if_stmt
-    :   IF LP expression RP stmt (ELSE stmt)?
-    ;
+while_stmt: WHILE LP expr RP stmt;
 
-// ------------------ 7.3 for_stmt ------------------
-for_stmt
-    :   FOR LP ID ASSIGN expression CM expression CM expression RP stmt
-    ;
+do_while_stmt: DO block_stmt WHILE LP expr RP SM;
 
-// ------------------ 7.4 while_stmt ------------------
-while_stmt
-    :   WHILE LP expression RP stmt
-    ;
+for_stmt: FOR LP ID ASSIGN expr CM expr CM expr RP stmt;
 
-// ------------------ 7.5 do_while_stmt ------------------
-do_while_stmt
-    :   DO block_stmt WHILE LP expression RP SM
-    ;
+break_stmt: BREAK SM;
 
-// ------------------ 7.6 break_stmt
-break_stmt
-    :   BREAK SM
-    ;
+continue_stmt: CONTINUE SM;
 
-// ------------------ 7.7 continue_stmt
-continue_stmt
-    :   CONTINUE SM
-    ;
+call_stmt: func_call SM;
 
-// ------------------ 7.8 return_stmt ------------------
-return_stmt
-    :   RETURN expression? SM
-    ;
+block_stmt: LCB (stmt | var_decl)* RCB;
 
-// ------------------ 7.9 call_stmt ------------------
-call_stmt
-    :   func_call SM
-    ;
+return_stmt: RETURN expr? SM;
 
-// ------------------ 7.10 block_stmt ------------------
-block_stmt
-    :   LCB (stmt | variable_decl)* RCB
-    ;
-
-// ------------------ 5.1 variable_decl ------------------
-variable_decl
-    :   l = identifier_lst COLON valid_type ASSIGN r=expr_lst e=SM
-    {if len($l.text.split(',')) != len($r.text.split(',')):
+// ------------------ 5.1 var_decl ------------------
+var_decl
+    : t = id_lst COLON valid_type ASSIGN r=expr_lst e=SM
+    {if len($t.text.split(',')) != len($r.text.split(',')):
         raise Exception('Error on line {} col {}: ;'.format($e.line, $e.pos))
     }
-    |   identifier_lst COLON atomic_type SM
+    | id_lst COLON atomic_type SM
     ;
 
-identifier_lst
-    :   ID (CM ID)*
-    ;
+id_lst: ID (CM ID)*;
 
-valid_type
-    :   atomic_type
-    |   AutoType
-    ;
+valid_type: atomic_type | AutoType;
 
 // ------------------ 5.2 para_decl ------------------
-para_lst_decl
-    :   para_decl (CM para_decl)*
-    ;
+para_lst_decl: para_decl (CM para_decl)*;
 
-para_decl
-    :   INHERIT? OUT? ID COLON atomic_type
-    ;
+para_decl: INHERIT? OUT? ID COLON atomic_type;
 
 // ------------------ 5.3 func_decl ------------------
-func_decl
-    :   func_prototype func_body
-    ;
+func_decl:   func_prototype func_body;
 
 func_prototype
     :   ID COLON FUNCTION func_return_type LP para_lst_decl RP (INHERIT ID)?
@@ -131,76 +82,51 @@ func_return_type
     |   AutoType
     ;
 
-func_body
-    :   LCB (stmt|variable_decl)* RCB
-    ;
+func_body: LCB (stmt|var_decl)* RCB;
 
-// ------------------ 6 - expression
-// ------------------ 6.6 - func_call
-func_call
-    :   ID LP arg_lst* RP
-    ;
+// ------------------ 6.6 func_call ------------------
+func_call: ID LP arg_lst? RP;
 
-arg_lst
-    :   expression (CM expression)*
-    ;
+arg_lst: expr (CM expr)*;
+expr: relation_expr (SRO relation_expr)?;
+relation_expr: logic_expr (relation_op logic_expr)?;
 
-expression
-    :   relation_expr (SRO relation_expr)?
-    ;
+relation_op: EQ | INEQ | LT | GT | LE | GE;
 
-relation_expr
-    :   logical_expr (relation_op logical_expr)?
-    ;
-
-relation_op
-    :   (EQ | INEQ | LT | GT | LE | GE)
-    ;
-
-logical_expr
-    :   logical_expr logical_op adding_expr
+logic_expr
+    :   logic_expr logic_op adding_expr
     |   adding_expr
     ;
 
-logical_op
-    :   (ANDAND | OROR)
-    ;
+logic_op: LG_AND | LG_OR;
 
 adding_expr
     :   adding_expr adding_op multiplying_expr
     |   multiplying_expr
     ;
 
-adding_op
-    :   (ADD | SUB)
-    ;
+adding_op: ADD | SUB;
 
 multiplying_expr
-    :   multiplying_expr multiplying_op unary_logical_expr
-    |   unary_logical_expr
+    :   multiplying_expr multiplying_op unary_logic_expr
+    |   unary_logic_expr
     ;
 
-multiplying_op
-    :   (MUL | DIV | MOD)
-    ;
+multiplying_op: MUL | DIV | MOD;
 
-unary_logical_expr
-    :   unary_logical_op (unary_logical_expr | sign_expr)
+unary_logic_expr
+    :   unary_logic_op (unary_logic_expr | sign_expr)
     |   sign_expr
     ;
 
-unary_logical_op
-    :   NOT
-    ;
+unary_logic_op: NOT;
 
 sign_expr
     :   sign_op (index_expr | sign_expr)
     |   index_expr
     ;
 
-sign_op
-    :   (SUB)
-    ;
+sign_op: SUB;
 
 index_expr
     :   ID LSB expr_lst RSB
@@ -209,16 +135,12 @@ index_expr
     |   INTLIT
     |   FLOATLIT
     |   STRINGLIT
-    |   arrayL //processing
+    |   arrayLIT
     |   func_call
     //
     ;
 
-arrayL: LCB expr_lst RCB;
-
-expr_lst
-    :   expression (CM expression)*
-    ;
+expr_lst: expr (CM expr)*;
 
 // ------------------ 4.2 array_decl ------------------
 array_decl:   ArrayType LSB integer_lst RSB OF atomic_type;
@@ -241,7 +163,9 @@ ArrayType: ARRAY;
 VoidType: VOID;
 AutoType: AUTO;
 
-// ------------------ 3.7 Literals: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT ------------------
+// ------------------ 3.7 Literals: INTLIT | FLOATLIT | BOOLLIT | STRINGLIT | arrayLIT ------------------
+arrayLIT: LCB expr_lst RCB;
+
 INTLIT
     :   NonZeroDigit ('_'Digit | Digit)* {self.text = self.text.replace('_', '')}
     |   '0'
@@ -295,8 +219,8 @@ MUL:            '*';
 DIV:            '/';
 MOD:            '%';
 NOT:            '!';
-ANDAND:         '&&';
-OROR:           '||';
+LG_AND:         '&&';
+LG_OR:           '||';
 EQ:             '==';
 INEQ:           '!='; //inequality
 LT:             '<';

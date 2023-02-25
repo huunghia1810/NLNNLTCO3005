@@ -268,8 +268,8 @@ class MT22Lexer(Lexer):
     DIV = 26
     MOD = 27
     NOT = 28
-    ANDAND = 29
-    OROR = 30
+    LG_AND = 29
+    LG_OR = 30
     EQ = 31
     INEQ = 32
     LT = 33
@@ -326,8 +326,8 @@ class MT22Lexer(Lexer):
             "StringType", "IntegerType", "FloatType", "BooleanType", "ArrayType", 
             "VoidType", "AutoType", "INTLIT", "FLOATLIT", "BOOLLIT", "STRINGLIT", 
             "LP", "RP", "LSB", "RSB", "DOT", "CM", "SM", "COLON", "LCB", 
-            "RCB", "ASSIGN", "ADD", "SUB", "MUL", "DIV", "MOD", "NOT", "ANDAND", 
-            "OROR", "EQ", "INEQ", "LT", "GT", "LE", "GE", "SRO", "MAIN", 
+            "RCB", "ASSIGN", "ADD", "SUB", "MUL", "DIV", "MOD", "NOT", "LG_AND", 
+            "LG_OR", "EQ", "INEQ", "LT", "GT", "LE", "GE", "SRO", "MAIN", 
             "AUTO", "BREAK", "BOOLEAN", "DO", "ELSE", "FALSE", "FLOAT", 
             "FOR", "FUNCTION", "IF", "INTEGER", "INT", "RETURN", "STRING", 
             "TRUE", "WHILE", "VOID", "IN", "OUT", "CONTINUE", "OF", "INHERIT", 
@@ -340,7 +340,7 @@ class MT22Lexer(Lexer):
                   "BOOLLIT", "STRINGLIT", "Schar", "EscapeSequence", "LP", 
                   "RP", "LSB", "RSB", "DOT", "CM", "SM", "COLON", "LCB", 
                   "RCB", "ASSIGN", "ADD", "SUB", "MUL", "DIV", "MOD", "NOT", 
-                  "ANDAND", "OROR", "EQ", "INEQ", "LT", "GT", "LE", "GE", 
+                  "LG_AND", "LG_OR", "EQ", "INEQ", "LT", "GT", "LE", "GE", 
                   "SRO", "MAIN", "AUTO", "BREAK", "BOOLEAN", "DO", "ELSE", 
                   "FALSE", "FLOAT", "FOR", "FUNCTION", "IF", "INTEGER", 
                   "INT", "RETURN", "STRING", "TRUE", "WHILE", "VOID", "IN", 

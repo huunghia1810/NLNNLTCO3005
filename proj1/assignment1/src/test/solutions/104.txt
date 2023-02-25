@@ -1,1 +1,1 @@
-1.2e3,<EOF>
+Error Token ~
