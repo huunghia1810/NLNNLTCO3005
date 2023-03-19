@@ -1,4 +1,4 @@
 Program([
-	VarDecl(x, FloatType, UnExpr(<class 'str'>, IntegerLit(5)))
-	VarDecl(y, AutoType, UnExpr(<class 'str'>, BooleanLit(True)))
+	VarDecl(x, FloatType, UnExpr(-, IntegerLit(5)))
+	VarDecl(y, AutoType, UnExpr(!, BooleanLit(True)))
 ])

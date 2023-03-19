@@ -1110,8 +1110,8 @@ class ASTGenSuite(unittest.TestCase):
         a,b: array [3] of integer = c,d;
         """
         expect = """Program([
-	VarDecl(a, ArrayType([3], IntegerType), c)
-	VarDecl(b, ArrayType([3], IntegerType), d)
+	VarDecl(a, ArrayType([3], IntegerType), Id(c))
+	VarDecl(b, ArrayType([3], IntegerType), Id(d))
 ])"""
         self.assertTrue(TestAST.test(input,expect,392))
     def test_whileIfInFor(self):
@@ -1293,3 +1293,12 @@ class ASTGenSuite(unittest.TestCase):
 	FuncDecl(inc, VoidType, [OutParam(n, IntegerType), Param(delta, IntegerType)], None, BlockStmt([AssignStmt(Id(n), BinExpr(+, Id(n), FuncCall(fact, [IntegerLit(0)]))), ReturnStmt()]))
 ])"""
         self.assertTrue(TestAST.test(input, expect, 401))
+    def test_e_in_float_with_no_INTPART_andDECPART(self): 
+        input = """
+        a:float = .e2;
+        """
+        expect = """Program([
+	VarDecl(a, FloatType, FloatLit(0.0))
+])"""
+        self.assertTrue(TestAST.test(input,expect,402))
+    

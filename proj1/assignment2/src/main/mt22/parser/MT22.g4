@@ -1,4 +1,4 @@
-//Nguyen Huu Nghia, MSSV: 2033068
+// 2012018
 grammar MT22;
 
 @lexer::header {
@@ -24,11 +24,7 @@ vardecl: varnoinit | varassign | array;
 
 varnoinit: idlist COLON vartype SEMI; 
 
-varassign:
-    l=idlist COLON vartype EQ r=expprime e=SEMI
-    {if len($l.text.split(',')) != len($r.text.split(',')):
-        raise Exception('Error on line {} col {}: ;'.format($e.line, $e.pos))
-    };
+varassign: idlist COLON vartype EQ expprime SEMI; 
 // basecase: ID COLON vartype EQ expr;
 // helper: ID COMMA helper COMMA expr | basecase; 
 // py run.py test ASTGenSuite
@@ -48,7 +44,7 @@ arrayinit: idlist COLON arrayParam EQ arraylit SEMI;
 // arrayAssign: ID SQLB dimension SQRB EQ expr SEMI;
 // arrayIndex: ID SQLB dimension SQRB SEMI; 
 
-arraylit: idlist | arrayValList;
+arraylit: expprime | arrayValList;
 arrayValList: arrayVal COMMA arrayValList | arrayVal;  
 arrayVal: LCB exprlist RCB;
 arrayParam: ARR SQLB dimension SQRB OF atomic_type; 
@@ -89,8 +85,8 @@ returnstmt: RETURN (expr | ) SEMI;
 callstmt: ID LB exprlist RB SEMI; 
 continuestmt: CONTINUE SEMI;
 breakstmt: BREAK SEMI;
-blockstmt: LCB blocklist RCB;
-loopstmt: blockstmt | stmt; 
+blockstmt: LCB blocklist RCB;  
+loopstmt: blockstmt | stmt; // (STMT | VARDECL | )
 /* Statement */
 
 scalar_variable: ID |  indexop; 
@@ -114,7 +110,8 @@ indexop: ID SQLB expprime SQRB;
 /**************************************************** FRAGMENTS **********************************************/
 
 fragment EXPPART: [eE] [-+]? [0-9]+;
-fragment DECPART: '.'[0-9]*;   
+fragment DOT: '.'; 
+fragment DECPART: DOT [0-9]+;   
 fragment StringChar: ~[\b\f\r\n\t"\\] | ESC2; 
 fragment ESC2: '\\' [bfrnt"\\];
 fragment DOUBLEQ : '"';
@@ -127,7 +124,7 @@ fragment IllegalString
 PARAM_KEYWORDS: INHERIT | OUT;  
 BOOLLIT: TRUE | FALSE;
 
-FLOATLIT: (INTLIT DECPART | INTLIT DECPART EXPPART | INTLIT EXPPART | DECPART EXPPART?) {self.text = self.text.replace('_', '')};
+FLOATLIT: (INTLIT DECPART | INTLIT DECPART EXPPART | INTLIT EXPPART | DECPART EXPPART? | INTLIT DOT | DOT EXPPART) {self.text = self.text.replace('_', '')};
 /* 1. ; .e ;  */
 INTLIT: '0' | [1-9] ('_'?[0-9])* {self.text = self.text.replace('_', '')};
 
@@ -164,7 +161,7 @@ FUNCTION: 'function';
  FALSE: 'false'; 			
 
 /* KEYWORDS */
-
+// .e12 , 12. , .111, .1e2 
 
 /* COMMENT */
 COMMENT: '//' ~[\r\n]* -> skip;
@@ -178,7 +175,6 @@ ID: [_a-zA-Z][_a-zA-Z0-9]*; // key word not check now (ass1)
  RB: ')';  	 
  SQLB: '['; 		
  SQRB: ']';  
- DOT:  '.';  	
  COMMA: ',';  
  SEMI: ';';  		
  COLON: ':';
