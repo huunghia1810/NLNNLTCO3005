@@ -11,3 +11,5 @@ docker-compose.yml
 
 
 .DS_Store
+/proj1/assignment2/src/test/solutions/
+/proj1/assignment2/src/test/testcases/

@@ -83,3 +83,5 @@ configs/proxies_ext\.json
 .cache
 
 __pycache__
+/assignment2/src/test/solutions/
+/assignment2/src/test/testcases/

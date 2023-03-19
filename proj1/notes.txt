@@ -1,14 +1,14 @@
-export ANTLR_JAR=/Users/nghianguyen/myhouse/softs/antlr-4.9.2-complete.jar
+export ANTLR_JAR=/Users/nghianguyen/NghiaHome/soft/antlr-4.9.2-complete.jar
 
 pip install antlr4-python3-runtime
 pip install antlr4-python3-runtime==4.9.2
 
 echo $ANTLR_JAR
 access folder of *.g4
-    run: export CLASSPATH=".:/Users/nghianguyen/myhouse/softs/antlr-4.9.2-complete.jar:$CLASSPATH"
+    run: export CLASSPATH=".:/Users/nghianguyen/NghiaHome/soft/antlr-4.9.2-complete.jar:$CLASSPATH"
 
-alias antlr4='java -Xmx500M -cp "/Users/nghianguyen/myhouse/softs/antlr-4.9.2-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
-alias grun='java -Xmx500M -cp "/Users/nghianguyen/myhouse/softs/antlr-4.9.2-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+alias antlr4='java -Xmx500M -cp "/Users/nghianguyen/NghiaHome/soft/antlr-4.9.2-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+alias grun='java -Xmx500M -cp "/Users/nghianguyen/NghiaHome/soft/antlr-4.9.2-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
 
 ============================= //Test aaa/Hello.g4 ============================================
 https://github.com/antlr/antlr4/blob/master/doc/getting-started.md#a-first-example
