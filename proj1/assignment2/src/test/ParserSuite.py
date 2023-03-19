@@ -424,7 +424,6 @@ class ParserSuite(unittest.TestCase):
         expect = "successful"
         self.assertTrue(TestParser.test(input,expect,246))
 
-#----------------- [ARRAY TEST] -----------------#
 
     def test_47(self):
         input = """

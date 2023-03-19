@@ -1,3 +1,0 @@
-Program([
-	VarDecl(delta, IntegerType, IntegerLit(3))
-])

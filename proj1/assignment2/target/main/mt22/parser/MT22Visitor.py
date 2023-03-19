@@ -54,46 +54,6 @@ class MT22Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MT22Parser#array.
-    def visitArray(self, ctx:MT22Parser.ArrayContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#arraydecl.
-    def visitArraydecl(self, ctx:MT22Parser.ArraydeclContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#arrayinit.
-    def visitArrayinit(self, ctx:MT22Parser.ArrayinitContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#arraylit.
-    def visitArraylit(self, ctx:MT22Parser.ArraylitContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#arrayValList.
-    def visitArrayValList(self, ctx:MT22Parser.ArrayValListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#arrayVal.
-    def visitArrayVal(self, ctx:MT22Parser.ArrayValContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#arrayParam.
-    def visitArrayParam(self, ctx:MT22Parser.ArrayParamContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MT22Parser#dimension.
-    def visitDimension(self, ctx:MT22Parser.DimensionContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by MT22Parser#funcdecl.
     def visitFuncdecl(self, ctx:MT22Parser.FuncdeclContext):
         return self.visitChildren(ctx)
@@ -141,6 +101,46 @@ class MT22Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MT22Parser#blocklist.
     def visitBlocklist(self, ctx:MT22Parser.BlocklistContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#array.
+    def visitArray(self, ctx:MT22Parser.ArrayContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#arraydecl.
+    def visitArraydecl(self, ctx:MT22Parser.ArraydeclContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#arrayinit.
+    def visitArrayinit(self, ctx:MT22Parser.ArrayinitContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#arraylit.
+    def visitArraylit(self, ctx:MT22Parser.ArraylitContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#arrayValList.
+    def visitArrayValList(self, ctx:MT22Parser.ArrayValListContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#arrayVal.
+    def visitArrayVal(self, ctx:MT22Parser.ArrayValContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#arrayParam.
+    def visitArrayParam(self, ctx:MT22Parser.ArrayParamContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MT22Parser#dimension.
+    def visitDimension(self, ctx:MT22Parser.DimensionContext):
         return self.visitChildren(ctx)
 
 
