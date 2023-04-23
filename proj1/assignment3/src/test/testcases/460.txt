@@ -1,0 +1,9 @@
+
+        foo_: function void() {
+            foo(69); 
+        } 
+        foo: function auto (x:integer) {
+            x = x + foo(10); 
+            return 1; 
+        }
+        

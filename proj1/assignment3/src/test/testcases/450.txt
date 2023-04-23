@@ -1,0 +1,10 @@
+
+foo: function integer(y: auto) inherit foo1 {
+    super(69);
+    x = x + y;
+    y = y + 0.1;
+    }
+       foo1: function integer(inherit x: auto){
+            x = x + 1;
+            x = x + 1.5; 
+        }

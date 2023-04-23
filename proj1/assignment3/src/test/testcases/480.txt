@@ -1,0 +1,4 @@
+
+        inc : function void (out n : integer, a:float) inherit foo {}
+        foo : function auto (inherit n: float, c: integer){} 
+        

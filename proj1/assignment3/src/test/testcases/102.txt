@@ -1,1 +1,4 @@
-1_234_567
+
+        main: function void (x:float) {}
+        main: function void () {}
+        

@@ -1,0 +1,9 @@
+
+       foo1: function integer(inherit x: auto){
+            printInteger(x); 
+            foo1(x); 
+        }
+        foo: function integer(y: integer) inherit foo1 {
+        y = 69; 
+    }
+        

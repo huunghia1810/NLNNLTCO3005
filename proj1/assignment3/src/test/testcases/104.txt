@@ -1,1 +1,4 @@
- "He asked me: \"Where is John?\"" 
+
+        foo: function void () {}
+        foo: function void () {}    
+        
