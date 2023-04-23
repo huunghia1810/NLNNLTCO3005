@@ -537,7 +537,7 @@ class StaticChecker(Visitor):
             for x in listSymbols:
                 if ast.name == x.name:
                     if type(x) is not FuncSymbol:
-                        raise TypeMismatchInExpression()
+                        raise TypeMismatchInExpression(ast)
                     else:
                         if len(args) != len(x.paramSortType):
                             raise TypeMismatchInExpression(ast)
