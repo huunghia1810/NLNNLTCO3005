@@ -1,8 +1,11 @@
 
-        fact: function void (m:integer, n: float) inherit foo {
-            super(1,1.0,true);
-            x: integer;
+            foo: function integer(inherit a:float) {
+                readInteger();
+            }
+            foo1: function void(b:float) inherit foo {
+                super(true);
+            }
+            main: function void () {
+                foo1(true,12); 
+                
         }
-        foo: function integer (inherit x:integer, y: float, z:boolean) {}
-        main: function void(){}
-        

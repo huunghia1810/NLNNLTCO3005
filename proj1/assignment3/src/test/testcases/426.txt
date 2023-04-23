@@ -1,7 +1,7 @@
 
-        main: function void () {}
-        foo: function void (x:integer) {
-            main: integer;
-            {}
+            main: function void () {
+                i:float;
+                for (i = 9.5, i >= 0, i - 1){
+                
+                } 
         }
-        

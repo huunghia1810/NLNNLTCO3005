@@ -1,1 +1,1 @@
-Type mismatch in expression: UnExpr(-, FuncCall(temp, []))
+Undeclared Identifier: a

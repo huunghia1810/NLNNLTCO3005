@@ -1,12 +1,7 @@
 
-        foo1: function auto(x:integer, y:float){}
-        foo2: function auto(x:integer, y:boolean){}
-        foo3: function integer(x:integer, y: float, z:boolean, t:string){}
-        foo4: function void(){}
-        main: function void () {
-            a: integer;
-            x: integer = 1;
-            y: boolean;
-            a = foo1(x,y);
+        a:integer = foo(78) + 15 ; 
+        foo: function auto (x:integer) {
+            return 1; 
         }
+        b:boolean = foo(1); 
         

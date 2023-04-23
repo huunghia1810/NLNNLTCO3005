@@ -1,1 +1,1 @@
-Type mismatch in expression: BinExpr(!=, StringLit(kien), IntegerLit(1))
+No entry point

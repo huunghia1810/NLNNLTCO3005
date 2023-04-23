@@ -1,0 +1,1 @@
+Type mismatch in statement: DoWhileStmt(BinExpr(::, StringLit(HCMUT), StringLit(K22)), BlockStmt([]))

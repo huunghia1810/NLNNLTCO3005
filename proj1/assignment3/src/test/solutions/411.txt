@@ -1,1 +1,1 @@
-Invalid Variable: a
+Type mismatch in expression: BinExpr(>=, FloatLit(11.11), Id(c))

@@ -1,4 +1,3 @@
-
-        fact: function void (m:integer, n: float) inherit foo {}
-        main: function void () {}
-        
+Program([
+	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(a, BooleanType), AssignStmt(Id(a), BinExpr(>, FloatLit(12.25), BooleanLit(True)))]))
+])

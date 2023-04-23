@@ -1,6 +1,7 @@
 
-        fact: function void (m:integer, n: float) inherit foo {
-            x:integer;
+            main: function void () {
+                i:integer; 
+                for (i = true, i >= 0, i - 1){
+                
+                } 
         }
-        foo: function integer (x:integer, y: float, z:boolean) {}
-        

@@ -1,7 +1,7 @@
 
-            s: string = "2";
-            main: function void () {
-                a, b: array [5] of integer;
-                a[4] = s;
-            }
-        
+a: integer = 2; //1
+b: auto; //2
+foo: function void(a: integer, b: float) {} //3
+bar: function void() inherit foo {} //4
+a: function void() {} //5
+

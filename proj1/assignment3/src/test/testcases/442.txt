@@ -1,6 +1,10 @@
 
-        bar: function void (inherit a: integer){}
-        foo: function void (a: integer) inherit bar {
-        preventDefault()
+        foo1: function void (inherit x: string){}
+        foo: function void() inherit foo1{
+            super("HCMUT");
+            foo(2);
         }
-        
+            main: function void () {
+                foo1(true,12); 
+                
+        }

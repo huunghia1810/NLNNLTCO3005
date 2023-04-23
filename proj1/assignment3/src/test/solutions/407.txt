@@ -1,0 +1,1 @@
+Type mismatch in expression: BinExpr(<, FloatLit(12.25), StringLit(12.25))

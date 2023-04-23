@@ -1,1 +1,1 @@
-Redeclared Variable: x
+Type mismatch in expression: BooleanLit(True)

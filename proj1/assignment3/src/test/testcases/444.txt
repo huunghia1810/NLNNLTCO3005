@@ -1,6 +1,10 @@
 
-        inc : function void (out n : integer, a:float) inherit foo{
-            super(1,1);
-        } 
-        foo : function auto (inherit n: float, n: integer){} 
-        
+        foo: function void() inherit foo1{
+            super("HCMUT",true);
+            x = 7;
+        }
+        foo1: function void (inherit x: string, inherit y:boolean){}
+            main: function void () {
+                foo1(true,12); 
+                
+        }

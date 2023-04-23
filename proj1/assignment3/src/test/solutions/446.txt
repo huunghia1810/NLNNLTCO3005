@@ -1,1 +1,1 @@
-Undeclared Function: printInt
+Undeclared Identifier: z

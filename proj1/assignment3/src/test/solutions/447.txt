@@ -1,1 +1,1 @@
-Type mismatch in statement: AssignStmt(ArrayCell(a, [IntegerLit(4)]), Id(s))
+Invalid Variable: b

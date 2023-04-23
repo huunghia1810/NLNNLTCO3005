@@ -1,1 +1,1 @@
-Type mismatch in expression: IntegerLit(3)
+Type mismatch in statement: CallStmt(foo1, BooleanLit(True), IntegerLit(12))
