@@ -1,3 +1,14 @@
-Program([
-	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(a, <class 'AST.IntegerType'>), AssignStmt(Id(a), BinExpr(%, IntegerLit(73), BooleanLit(True)))]))
-])
+
+        main: function void () {}
+        x : auto = "Kien";
+        foo: function void (x:integer, y: float, z:string) {
+            a:float;
+            {
+                b: integer;
+                {
+                    b: integer;
+                    x:integer;
+                }
+            }
+        }
+        

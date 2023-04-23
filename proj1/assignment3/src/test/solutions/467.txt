@@ -1,1 +1,1 @@
-Type mismatch in expression: FuncCall(foo, [IntegerLit(1), IntegerLit(2)])
+Type mismatch in statement: AssignStmt(Id(x), BinExpr(+, FloatLit(1.0), FuncCall(foo3, [IntegerLit(1), FloatLit(1.0), BooleanLit(True), StringLit(Kien)])))

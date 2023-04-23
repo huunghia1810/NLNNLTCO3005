@@ -1,1 +1,1 @@
-Type mismatch in statement: WhileStmt(IntegerLit(1111), CallStmt(printInteger, Id(x)))
+No entry point

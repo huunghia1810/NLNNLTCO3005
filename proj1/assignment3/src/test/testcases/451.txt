@@ -1,9 +1,8 @@
 
-foo: function integer(y: auto) inherit foo1 {
-    super(y);
-    y = y + true;
-    }
-       foo1: function integer(inherit x: integer){
-            x = x + 1;
-            x = x + 1.5; 
+        foo1: function auto(x:integer, y:float){}
+        foo2: function auto(x:integer, y:boolean){}
+        main: function void () {
+            x: integer;
+            x = 1 + 1.0;
         }
+        

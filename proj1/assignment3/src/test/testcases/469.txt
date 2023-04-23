@@ -1,6 +1,10 @@
 
-        foo: function void(a: auto, b: integer) {
-        a = a + b;
-        a = 1.5; 
-}
+        foo3: function integer(x:integer, y: float, z:boolean, t:string){}
+        main: function void () {
+            x : integer;
+            y : float;
+            z: integer;
+            y =  1.0 + foo3(1,1.0,true,"Kien");
+            y = foo3(1,1.0,true,"Kien");
+        }
         

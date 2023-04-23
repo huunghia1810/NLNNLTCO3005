@@ -1,9 +1,13 @@
 
-        foo1: function integer(y:integer) { 
-            y = y + foo(12); 
-            return y;
-        }
-        foo: function auto (x:integer) {
-            return 1; 
+        temp: function boolean(){}
+        foo: function integer(){}
+        foo1: function auto(x:integer, y:float){}
+        foo2: function integer(x:integer, y:boolean){}
+        foo3: function integer(x:integer, y: float, z:boolean, t:string){}
+        foo4: function void(){}
+        
+        main: function void () {
+            x: integer;
+            x = 5 % 2.0 ;
         }
         

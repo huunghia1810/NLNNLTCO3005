@@ -1,3 +1,5 @@
-Program([
-	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(a, StringType), AssignStmt(Id(a), UnExpr(-, StringLit(0301)))]))
-])
+
+        main: function void () {
+            a : float = 5;
+        }
+        

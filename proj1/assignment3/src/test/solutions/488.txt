@@ -1,1 +1,1 @@
-Invalid Parameter: a
+Type mismatch in statement: AssignStmt(Id(y), FuncCall(foo, []))

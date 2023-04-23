@@ -1,8 +1,8 @@
 
-       foo: function integer(inherit x: integer) inherit bar {
-        super(2);
-        y = 1; 
-        z = 1.5;
-        }
-bar: function integer(inherit y: integer) inherit foo2 {super("Hi");}
-foo2: function integer(inherit z: float) {}
+            r, s: integer = 5,10;
+            main: function void () {
+                a, b: array [5] of integer;
+                a[0] = s;
+                printInt(a[0]);
+            }
+        

@@ -1,9 +1,7 @@
 
-            foo: function integer(a:integer,b:integer) {}
-            foo1: function void() inherit foo {
-                preventDefault();
-            }
-            main: function void () {
-                foo1(true,12); 
-                
+        fact: function void (m:integer, n: float) inherit foo {
+            super(1,2,3);
         }
+        foo: function integer (x:integer, y: float, z:boolean) {}
+        main: function void(){}
+        

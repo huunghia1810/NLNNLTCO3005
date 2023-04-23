@@ -1,3 +1,5 @@
-Program([
-	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(a, BooleanType), VarDecl(b, ArrayType([3], BooleanType)), AssignStmt(Id(a), BinExpr(<, FloatLit(12.25), Id(b)))]))
-])
+
+        main: function void () {}
+        foo: function void (x:integer, y: float, z:string, x: boolean) {}
+        fact: function integer (x:integer, y: float, z:boolean) {}
+        

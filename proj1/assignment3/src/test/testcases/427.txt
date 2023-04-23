@@ -1,6 +1,8 @@
 
-            main: function void () {
-                i:integer = 10; 
-                for (i = 12, i >= 0, i - 0.5){
-                } 
+        foo: function void (x:integer) {
+            {
+                main: integer;
+            }
         }
+        main: function void () {}
+        

@@ -1,1 +1,1 @@
-Type mismatch in expression: BinExpr(>, FloatLit(12.25), BooleanLit(True))
+Undeclared Function: foo

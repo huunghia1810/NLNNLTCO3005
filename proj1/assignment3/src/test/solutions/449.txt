@@ -1,1 +1,1 @@
-Type mismatch in statement: AssignStmt(Id(x), BinExpr(+, Id(x), FloatLit(0.1)))
+Type mismatch in statement: CallStmt(printString, BinExpr(+, ArrayCell(a, [IntegerLit(0), IntegerLit(1)]), IntegerLit(2)))

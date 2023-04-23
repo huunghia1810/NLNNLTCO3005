@@ -1,4 +1,4 @@
-Program([
-	FuncDecl(foo, IntegerType, [], None, BlockStmt([]))
-	FuncDecl(main, VoidType, [], None, BlockStmt([CallStmt(foo, )]))
-])
+
+        main: function void (x:integer) {}
+        main: function void (x:integer) {}
+        

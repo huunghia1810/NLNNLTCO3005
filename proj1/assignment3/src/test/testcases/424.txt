@@ -1,3 +1,7 @@
-Program([
-	FuncDecl(main, VoidType, [], None, BlockStmt([WhileStmt(BinExpr(/, IntegerLit(2), IntegerLit(4)), BlockStmt([]))]))
-])
+
+        main: function void () {}
+        foo: function void (x:integer) {
+            foo: integer;
+            {}
+        }
+        

@@ -1,3 +1,5 @@
-Program([
-	FuncDecl(main, VoidType, [], None, BlockStmt([VarDecl(a, <class 'AST.IntegerType'>), AssignStmt(Id(a), BinExpr(-, StringLit(0301), IntegerLit(73)))]))
-])
+
+            a : integer ;
+            a: function integer() {}
+            main: function void () {}
+        

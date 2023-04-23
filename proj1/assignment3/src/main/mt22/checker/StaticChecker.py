@@ -261,15 +261,15 @@ class StaticChecker(Visitor):
         for x in o[gblScope]:
             if x.name == ast.name:
                 if type(typ_) is IntegerType:
-                    ret = Utils.infer(ast.name, o, IntegerType())
+                    ret = Utils.infer(o, ast.name, IntegerType())
                 elif type(typ_) is ArrayType:
                     pass
                 elif type(typ_) is StringType:
-                    ret = Utils.infer(ast.name, o, StringType())
+                    ret = Utils.infer(o, ast.name, StringType())
                 elif type(typ_) is FloatType:
-                    ret = Utils.infer(ast.name, o, FloatType())
+                    ret = Utils.infer(o, ast.name, FloatType())
                 elif type(typ_) is BooleanType:
-                    ret = Utils.infer(ast.name, o, BooleanType())
+                    ret = Utils.infer(o, ast.name, BooleanType())
                 return ret
 
         for x in funcDeclSort:
@@ -550,19 +550,19 @@ class StaticChecker(Visitor):
 
                             if paramType is AutoType:
                                 if argsType is StringType:
-                                    Utils.infer(x.env, x.env[i].name, StringType())
+                                    Utils.infer(x.env, x.env[0][i].name, StringType())
                                     x.paramSortType[i] = StringType()
                                 if argsType is ArrayType:
                                     paramType = Utils.infer(o, args[i].name, paramType)
                                     x.paramSortType[i] = paramType
                                 if argsType is IntegerType:
-                                    Utils.infer(x.env, x.env[i].name, IntegerType())
+                                    Utils.infer(x.env, x.env[0][i].name, IntegerType())
                                     x.paramSortType[i] = IntegerType()
                                 if argsType is BooleanType:
-                                    Utils.infer(x.env, x.env[i].name, BooleanType())
+                                    Utils.infer(x.env, x.env[0][i].name, BooleanType())
                                     x.paramSortType[i] = BooleanType()
                                 if argsType is FloatType:
-                                    Utils.infer(x.env, x.env[i].name, FloatType())
+                                    Utils.infer(x.env, x.env[0][i].name, FloatType())
                                     x.paramSortType[i] = FloatType()
                                 paramType = x.paramSortType[i]
 
@@ -614,15 +614,15 @@ class StaticChecker(Visitor):
 
                     if paramType is AutoType:
                         if argsType is StringType:
-                            x.paramSortType[i].typ =Utils.infer(x.env, x.env[i].name, StringType())
+                            x.paramSortType[i].typ =Utils.infer(x.env, x.env[0][i].name, StringType())
                         if argsType is ArrayType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, paramType)
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, paramType)
                         if argsType is IntegerType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, IntegerType())
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, IntegerType())
                         if argsType is BooleanType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, BooleanType())
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, BooleanType())
                         if argsType is FloatType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, FloatType())
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, FloatType())
                         paramType = type(x.paramSortType[i].typ)
 
                     if argsType != paramType:
@@ -847,15 +847,15 @@ class StaticChecker(Visitor):
 
                     if paramType is AutoType:
                         if argsType is StringType:
-                            x.paramSortType[i].typ =Utils.infer(x.env, x.env[i].name, StringType())
+                            x.paramSortType[i].typ =Utils.infer(x.env, x.env[0][i].name, StringType())
                         if argsType is IntegerType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, IntegerType())
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, IntegerType())
                         if argsType is BooleanType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, BooleanType())
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, BooleanType())
                         if argsType is FloatType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, FloatType())
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, FloatType())
                         if argsType is ArrayType:
-                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[i].name, paramType)
+                            x.paramSortType[i].typ = Utils.infer(x.env, x.env[0][i].name, paramType)
                         paramType = type(x.paramSortType[i].typ)
 
                     if argsType is AutoType:
@@ -894,18 +894,18 @@ class StaticChecker(Visitor):
 
                             if paramType is AutoType:
                                 if argsType is StringType:
-                                    Utils.infer(x.env, x.env[i].name, StringType())
+                                    Utils.infer(x.env, x.env[0][i].name, StringType())
                                 if argsType is IntegerType:
-                                    Utils.infer(x.env, x.env[i].name, IntegerType())
+                                    Utils.infer(x.env, x.env[0][i].name, IntegerType())
                                     x.paramSortType[i] = IntegerType()
                                 if argsType is FloatType:
-                                    Utils.infer(x.env, x.env[i].name, FloatType())
+                                    Utils.infer(x.env, x.env[0][i].name, FloatType())
                                     x.paramSortType[i] = FloatType()
                                 if argsType is ArrayType:
                                     paramType = Utils.infer(o, args[i].name, paramType)
                                     x.paramSortType[i] = paramType
                                 if argsType is BooleanType:
-                                    Utils.infer(x.env, x.env[i].name, BooleanType())
+                                    Utils.infer(x.env, x.env[0][i].name, BooleanType())
                                     x.paramSortType[i] = BooleanType()
                                     x.paramSortType[i] = StringType()
                                 paramType = x.paramSortType[i]
@@ -979,7 +979,7 @@ class GetEnv(Visitor):
         for decl in ast.params: # to get typ order.
             paramSortType = self.visit(decl, paramSortType)
         body = self.visit(ast.body, o)
-        o = [FuncSymbol(ast.name, return_type, paramSortType, ast.inherit, [], body)] + o
+        o = [FuncSymbol(ast.name, return_type, paramSortType, ast.inherit, paramSortType, body)] + o
         return o
 
     def visitParamDecl(self, ast, o):
